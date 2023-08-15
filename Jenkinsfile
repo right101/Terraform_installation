@@ -39,11 +39,16 @@ pipeline {
                 def terraformVersion = '1.5.4' //Updated to desired version
                 def downloadUrl = "https://releases.hashicorp.com/terraform/${terraformVersion}/terraform_${terraformVersion}_linux_amd64.zip"
                 sh "curl -o terraform.zip '${downloadUrl}'" // Download Terraform
-                sh '''                               
-                sudo unzip terraform.zip
-                sudo mv terraform /usr/local/bin/
-                terraform --version
-                '''           //Unzip and Install
+                sh "sudo unzip -o terraform.zip"                            
+                // def terraform = sh(script: 'pwd terraform || true', returnStatus: true)
+                // if (terraform !=0) {
+                //     echo "unzip terraform"
+                //     sh sudo 
+
+                }
+                sh "sudo mv terraform /usr/local/bin/"
+                sh "terraform --version"
+                          //Unzip and Install
                 }
             }
         }
