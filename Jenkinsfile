@@ -40,7 +40,7 @@ pipeline {
                 def downloadUrl = "https://releases.hashicorp.com/terraform/${terraformVersion}/terraform_${terraformVersion}_linux_amd64.zip"
                 sh "curl -o terraform.zip '${downloadUrl}'" // Download Terraform
                 sh '''                               
-                unzip terraform.zip
+                sudo unzip terraform.zip
                 sudo mv terraform /usr/local/bin/
                 terraform --version
                 '''           //Unzip and Install
