@@ -2,6 +2,21 @@ pipeline {
     agent any
 
     stages {
+        stage ('Setup Environment') {
+            steps {
+                script {
+                    //check if git istalled
+                    def gitInstalled = sh(script: 'which git || true', returnStatus: true)
+                    if (gitInstalled !=0) {
+                        echo "Git is not installed. Installing now..."
+                        sh 'sudo apt update && sudo apt install -y git'
+                    } else {
+                        echo "Git is already installed."
+                         }
+                    }
+                }
+            }
+        }
         stage ('Install Dependencies') {
             steps {
                 script {
