@@ -8,11 +8,9 @@ pipeline {
                     // check if unzip is installed
                     def hasUnzip = sh(script: 'which unzip || true', returnStatus: true)
                     if (hasUnzip != 0) {
-                        echo "Unzip is not installed. Installing..."
-                        sh '''
-                            sudo apt-get update
-                            sudo apt-get install -y unzip
-                        '''
+                        echo "Installing unzip"
+                        sh "sudo apt-get update"
+                        sh "udo apt-get install -y unzip"
                     } else {
                         echo "Unzip is already installed."
                         }
